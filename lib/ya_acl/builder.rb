@@ -2,9 +2,13 @@ module YaAcl
   class Builder
     attr_accessor :acl
 
-    def self.build &block
+    def self.build(hash_name = nil, &block)
       builder = new block
-      Acl.instance = builder.acl
+      if hash_name.nil?
+        Acl.instance = builder.acl
+      else
+        Acl.instance[hash_name] = builder.acl
+      end
     end
 
     def initialize block

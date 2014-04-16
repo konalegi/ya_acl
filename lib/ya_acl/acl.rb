@@ -5,6 +5,7 @@ module YaAcl
 
     class << self
       def instance
+        @@acl ||= {}
         @@acl
       end
 
@@ -28,7 +29,7 @@ module YaAcl
       end
       @roles[role_name.to_sym]
     end
-    
+
     def add_resource(resource)
       @resources ||= {}
       @resources[resource.name] = resource
